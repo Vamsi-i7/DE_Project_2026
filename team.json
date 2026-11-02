@@ -1,0 +1,28 @@
+
+{
+  "team_number": "EduWrap",
+  "group_lead": {
+    "name": "Bala Vamsi Krishna",
+    "enrollment_no": "2501010112",
+    "github": "Vamsi-i7"
+  },
+  "members": [
+    {
+      "name": "Shreya Das",
+      "enrollment_no": "2501010437",
+      "github": "sd2604"
+    },
+    {
+      "name": "Jayanth Pranay Konada",
+      "enrollment_no": "2501010205",
+      "github": "jayanth-afk"
+    },
+    {
+      "name": "Chekka Chandra Mouli",
+      "enrollment_no": "2501010124",
+      "github": "mouli2k7"
+    }
+  ],
+  "postgres_version": "17.11",
+  "laptop_used_for_benchmarks": "MacBook Pro 14-inch, Apple M4, 16GB RAM, macOS Tahoe 26.6"
+}
