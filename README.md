@@ -27,7 +27,7 @@
 | Member 3 |Jayanth Pranay Konada |2501010205 |Jayanth-afk |
 | Member 4 |Ch Chandra Mouli |2501010124 |mouli2k7 |
 
-**Team No.:** EduWrap · **Section:** A & E · **Repository URL:** https://github.com/Vamsi-i7/DE_Project_2026
+**Team No.:** T0055 · **Section:** A & E · **Repository URL:** https://github.com/Vamsi-i7/DE_Project_2026
 
 ---
 
