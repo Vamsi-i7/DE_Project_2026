@@ -1,0 +1,33 @@
+=== W04 run 1 ===
+Update on appointments  (cost=0.00..4974.00 rows=0 width=0) (actual time=10.310..10.310 rows=0.00 loops=1)
+  Buffers: shared hit=5561 dirtied=6 written=1
+  ->  Seq Scan on appointments  (cost=0.00..4974.00 rows=341 width=38) (actual time=8.824..9.141 rows=329.00 loops=1)
+        Filter: ((consult_ended_at IS NULL) AND (status = ANY ('{BOOKED,CHECKED_IN}'::text[])) AND (slot_end < '2026-07-02 00:00:00+05:30'::timestamp with time zone))
+        Rows Removed by Filter: 149671
+        Buffers: shared hit=2724
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.179 ms
+Execution Time: 10.344 ms
+=== W04 run 2 ===
+Update on appointments  (cost=0.00..4974.00 rows=0 width=0) (actual time=8.806..8.806 rows=0.00 loops=1)
+  Buffers: shared hit=5573 dirtied=5
+  ->  Seq Scan on appointments  (cost=0.00..4974.00 rows=341 width=38) (actual time=7.600..7.932 rows=329.00 loops=1)
+        Filter: ((consult_ended_at IS NULL) AND (status = ANY ('{BOOKED,CHECKED_IN}'::text[])) AND (slot_end < '2026-07-02 00:00:00+05:30'::timestamp with time zone))
+        Rows Removed by Filter: 149671
+        Buffers: shared hit=2724
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.179 ms
+Execution Time: 8.847 ms
+=== W04 run 3 ===
+Update on appointments  (cost=0.00..4974.00 rows=0 width=0) (actual time=9.824..9.824 rows=0.00 loops=1)
+  Buffers: shared hit=5615 dirtied=5
+  ->  Seq Scan on appointments  (cost=0.00..4974.00 rows=341 width=38) (actual time=8.477..8.879 rows=329.00 loops=1)
+        Filter: ((consult_ended_at IS NULL) AND (status = ANY ('{BOOKED,CHECKED_IN}'::text[])) AND (slot_end < '2026-07-02 00:00:00+05:30'::timestamp with time zone))
+        Rows Removed by Filter: 149671
+        Buffers: shared hit=2724
+Planning:
+  Buffers: shared hit=126
+Planning Time: 0.185 ms
+Execution Time: 9.858 ms

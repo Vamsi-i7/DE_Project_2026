@@ -1,0 +1,31 @@
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,2.001,1.955,1.616,2.432,Seq Scan on doctor_specializations | Seq Scan on specializations | Index Scan using doctors_pkey on doctors | Index Scan using doctor_schedules_pkey on doctor_schedules | Seq Scan on clinics
+R02,READ,0.251,0.227,0.203,0.324,Index Scan using doctor_schedules_pkey on doctor_schedules | Seq Scan on clinics
+R03,READ,10.120,10.060,9.469,10.831,Index Scan using doctor_schedules_pkey on doctor_schedules | Seq Scan on appointments
+R04,READ,7.283,7.165,7.010,7.673,Seq Scan on appointments | Index Scan using doctors_pkey on doctors | Seq Scan on clinics
+R05,READ,5.382,5.304,5.265,5.576,Seq Scan on appointments | Index Scan using patients_pkey on patients
+R06,READ,0.034,0.030,0.024,0.048,Index Scan using patients_phone_key on patients
+R07,READ,0.049,0.042,0.041,0.064,Index Scan using prescriptions_appointment_id_key on prescriptions | Index Scan using prescription_items_pkey on prescription_items
+R08,READ,20.818,20.826,20.611,21.017,Seq Scan on appointments | Seq Scan on doctor_specializations | Seq Scan on specializations
+R09,READ,8.224,8.276,8.076,8.319,Seq Scan on appointments
+R10,READ,18.637,17.977,17.856,20.077,Seq Scan on appointments | Seq Scan on patients | Index Scan using prescriptions_appointment_id_key on prescriptions | Index Scan using prescription_items_pkey on prescription_items
+R11,READ,16.821,16.731,16.683,17.049,Seq Scan on appointments | Seq Scan on prescriptions | Index Scan using appointments_pkey on appointments
+R12,READ,23.422,23.260,23.191,23.815,Seq Scan on appointments
+R13,READ,2.582,2.501,2.499,2.747,Seq Scan on clinics | Seq Scan on doctor_schedules
+R14,READ,19.050,18.987,18.761,19.401,Seq Scan on appointments | Seq Scan on doctor_reviews
+R15,READ,21.774,21.690,20.847,22.786,Seq Scan on prescription_items | Seq Scan on appointments | Seq Scan on prescriptions | Seq Scan on doctor_specializations | Seq Scan on specializations
+R16,READ,9.647,9.798,9.241,9.902,Seq Scan on appointments | Seq Scan on clinics
+R17,READ,42.049,41.849,41.749,42.550,Seq Scan on appointments | Seq Scan on patients
+R18,READ,3.922,3.917,3.909,3.940,Seq Scan on doctor_schedules | Seq Scan on doctors | Seq Scan on clinics
+R19,READ,4606.387,4680.990,4403.820,4734.350,Seq Scan on doctor_schedules | Seq Scan on clinics | Seq Scan on doctors | Seq Scan on appointments
+R20,READ,8.497,8.362,8.337,8.791,Seq Scan on appointments
+R21,READ,8.579,8.532,8.452,8.753,Seq Scan on appointments
+R22,READ,33.663,33.069,32.835,35.084,Seq Scan on appointments
+R23,READ,0.028,0.028,0.027,0.029,Index Scan using doctors_registration_no_key on doctors
+R24,READ,23.873,24.084,23.040,24.495,Seq Scan on appointments
+R25,READ,19.917,19.875,19.844,20.032,Seq Scan on appointments | Seq Scan on doctor_specializations
+W01,WRITE,0.965,0.503,0.486,1.906,Index Scan using doctor_schedules_pkey on doctor_schedules | Index Scan using doctors_pkey on doctors
+W02,WRITE,6.889,6.941,6.725,7.000,Seq Scan on appointments | Index Scan using appointments_pkey on appointments
+W03,WRITE,0.152,0.142,0.140,0.174,Index Scan using prescriptions_appointment_id_key on prescriptions
+W04,WRITE,9.683,9.858,8.847,10.344,Seq Scan on appointments
+W05,WRITE,6.934,6.928,6.902,6.971,Seq Scan on appointments
