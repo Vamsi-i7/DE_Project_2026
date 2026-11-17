@@ -1,96 +1,96 @@
 === R25 run 1 ===
-Sort  (cost=9755.17..9783.80 rows=11453 width=16) (actual time=19.831..19.835 rows=113.00 loops=1)
+Sort  (cost=9717.74..9746.17 rows=11369 width=16) (actual time=18.990..18.993 rows=113.00 loops=1)
   Sort Key: (count(DISTINCT a.doctor_id)) DESC, a.patient_id
   Sort Method: quicksort  Memory: 28kB
   Buffers: shared hit=2750
-  ->  GroupAggregate  (cost=8209.99..8983.04 rows=11453 width=16) (actual time=15.693..19.813 rows=113.00 loops=1)
+  ->  GroupAggregate  (cost=8184.50..8951.88 rows=11369 width=16) (actual time=15.014..18.971 rows=113.00 loops=1)
         Group Key: a.patient_id, ds.spec_id
         Filter: (count(DISTINCT a.doctor_id) >= 3)
         Rows Removed by Filter: 37920
         Buffers: shared hit=2744
-        ->  Sort  (cost=8209.99..8295.88 rows=34358 width=12) (actual time=15.606..16.472 rows=40670.00 loops=1)
+        ->  Sort  (cost=8184.50..8269.76 rows=34106 width=12) (actual time=14.934..15.698 rows=40670.00 loops=1)
               Sort Key: a.patient_id, ds.spec_id, a.doctor_id
               Sort Method: quicksort  Memory: 2807kB
               Buffers: shared hit=2744
-              ->  Hash Join  (cost=94.50..5621.40 rows=34358 width=12) (actual time=4.751..11.215 rows=40670.00 loops=1)
+              ->  Hash Join  (cost=98.50..5616.70 rows=34106 width=12) (actual time=4.833..10.973 rows=40670.00 loops=1)
                     Hash Cond: (a.doctor_id = ds.doctor_id)
                     Buffers: shared hit=2744
-                    ->  Seq Scan on appointments a  (cost=0.00..4974.00 rows=41863 width=8) (actual time=4.467..7.908 rows=40670.00 loops=1)
+                    ->  Seq Scan on appointments a  (cost=0.00..4970.00 rows=41428 width=8) (actual time=4.577..7.885 rows=40670.00 loops=1)
                           Filter: ((slot_start >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (status = 'COMPLETED'::text))
                           Rows Removed by Filter: 109330
-                          Buffers: shared hit=2724
-                    ->  Hash  (cost=57.00..57.00 rows=3000 width=8) (actual time=0.277..0.277 rows=3000.00 loops=1)
+                          Buffers: shared hit=2720
+                    ->  Hash  (cost=61.00..61.00 rows=3000 width=8) (actual time=0.249..0.249 rows=3000.00 loops=1)
                           Buckets: 4096  Batches: 1  Memory Usage: 150kB
-                          Buffers: shared hit=20
-                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..57.00 rows=3000 width=8) (actual time=0.004..0.156 rows=3000.00 loops=1)
+                          Buffers: shared hit=24
+                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..61.00 rows=3000 width=8) (actual time=0.005..0.143 rows=3000.00 loops=1)
                                 Filter: is_primary
                                 Rows Removed by Filter: 700
-                                Buffers: shared hit=20
+                                Buffers: shared hit=24
 Planning:
   Buffers: shared hit=193
-Planning Time: 0.382 ms
-Execution Time: 19.875 ms
+Planning Time: 0.386 ms
+Execution Time: 19.035 ms
 === R25 run 2 ===
-Sort  (cost=9755.17..9783.80 rows=11453 width=16) (actual time=19.981..19.984 rows=113.00 loops=1)
+Sort  (cost=9717.74..9746.17 rows=11369 width=16) (actual time=18.729..18.732 rows=113.00 loops=1)
   Sort Key: (count(DISTINCT a.doctor_id)) DESC, a.patient_id
   Sort Method: quicksort  Memory: 28kB
   Buffers: shared hit=2750
-  ->  GroupAggregate  (cost=8209.99..8983.04 rows=11453 width=16) (actual time=15.847..19.962 rows=113.00 loops=1)
+  ->  GroupAggregate  (cost=8184.50..8951.88 rows=11369 width=16) (actual time=14.845..18.712 rows=113.00 loops=1)
         Group Key: a.patient_id, ds.spec_id
         Filter: (count(DISTINCT a.doctor_id) >= 3)
         Rows Removed by Filter: 37920
         Buffers: shared hit=2744
-        ->  Sort  (cost=8209.99..8295.88 rows=34358 width=12) (actual time=15.759..16.541 rows=40670.00 loops=1)
+        ->  Sort  (cost=8184.50..8269.76 rows=34106 width=12) (actual time=14.754..15.515 rows=40670.00 loops=1)
               Sort Key: a.patient_id, ds.spec_id, a.doctor_id
               Sort Method: quicksort  Memory: 2807kB
               Buffers: shared hit=2744
-              ->  Hash Join  (cost=94.50..5621.40 rows=34358 width=12) (actual time=4.835..11.312 rows=40670.00 loops=1)
+              ->  Hash Join  (cost=98.50..5616.70 rows=34106 width=12) (actual time=4.419..10.541 rows=40670.00 loops=1)
                     Hash Cond: (a.doctor_id = ds.doctor_id)
                     Buffers: shared hit=2744
-                    ->  Seq Scan on appointments a  (cost=0.00..4974.00 rows=41863 width=8) (actual time=4.559..8.021 rows=40670.00 loops=1)
+                    ->  Seq Scan on appointments a  (cost=0.00..4970.00 rows=41428 width=8) (actual time=4.155..7.444 rows=40670.00 loops=1)
                           Filter: ((slot_start >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (status = 'COMPLETED'::text))
                           Rows Removed by Filter: 109330
-                          Buffers: shared hit=2724
-                    ->  Hash  (cost=57.00..57.00 rows=3000 width=8) (actual time=0.267..0.267 rows=3000.00 loops=1)
+                          Buffers: shared hit=2720
+                    ->  Hash  (cost=61.00..61.00 rows=3000 width=8) (actual time=0.257..0.257 rows=3000.00 loops=1)
                           Buckets: 4096  Batches: 1  Memory Usage: 150kB
-                          Buffers: shared hit=20
-                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..57.00 rows=3000 width=8) (actual time=0.005..0.146 rows=3000.00 loops=1)
+                          Buffers: shared hit=24
+                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..61.00 rows=3000 width=8) (actual time=0.003..0.141 rows=3000.00 loops=1)
                                 Filter: is_primary
                                 Rows Removed by Filter: 700
-                                Buffers: shared hit=20
+                                Buffers: shared hit=24
 Planning:
   Buffers: shared hit=193
-Planning Time: 0.325 ms
-Execution Time: 20.032 ms
+Planning Time: 0.315 ms
+Execution Time: 18.769 ms
 === R25 run 3 ===
-Sort  (cost=9755.17..9783.80 rows=11453 width=16) (actual time=19.797..19.800 rows=113.00 loops=1)
+Sort  (cost=9717.74..9746.17 rows=11369 width=16) (actual time=19.032..19.034 rows=113.00 loops=1)
   Sort Key: (count(DISTINCT a.doctor_id)) DESC, a.patient_id
   Sort Method: quicksort  Memory: 28kB
   Buffers: shared hit=2750
-  ->  GroupAggregate  (cost=8209.99..8983.04 rows=11453 width=16) (actual time=15.548..19.777 rows=113.00 loops=1)
+  ->  GroupAggregate  (cost=8184.50..8951.88 rows=11369 width=16) (actual time=15.117..19.015 rows=113.00 loops=1)
         Group Key: a.patient_id, ds.spec_id
         Filter: (count(DISTINCT a.doctor_id) >= 3)
         Rows Removed by Filter: 37920
         Buffers: shared hit=2744
-        ->  Sort  (cost=8209.99..8295.88 rows=34358 width=12) (actual time=15.456..16.284 rows=40670.00 loops=1)
+        ->  Sort  (cost=8184.50..8269.76 rows=34106 width=12) (actual time=15.039..15.797 rows=40670.00 loops=1)
               Sort Key: a.patient_id, ds.spec_id, a.doctor_id
               Sort Method: quicksort  Memory: 2807kB
               Buffers: shared hit=2744
-              ->  Hash Join  (cost=94.50..5621.40 rows=34358 width=12) (actual time=4.651..10.988 rows=40670.00 loops=1)
+              ->  Hash Join  (cost=98.50..5616.70 rows=34106 width=12) (actual time=4.712..10.863 rows=40670.00 loops=1)
                     Hash Cond: (a.doctor_id = ds.doctor_id)
                     Buffers: shared hit=2744
-                    ->  Seq Scan on appointments a  (cost=0.00..4974.00 rows=41863 width=8) (actual time=4.378..7.797 rows=40670.00 loops=1)
+                    ->  Seq Scan on appointments a  (cost=0.00..4970.00 rows=41428 width=8) (actual time=4.432..7.784 rows=40670.00 loops=1)
                           Filter: ((slot_start >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (status = 'COMPLETED'::text))
                           Rows Removed by Filter: 109330
-                          Buffers: shared hit=2724
-                    ->  Hash  (cost=57.00..57.00 rows=3000 width=8) (actual time=0.265..0.266 rows=3000.00 loops=1)
+                          Buffers: shared hit=2720
+                    ->  Hash  (cost=61.00..61.00 rows=3000 width=8) (actual time=0.273..0.273 rows=3000.00 loops=1)
                           Buckets: 4096  Batches: 1  Memory Usage: 150kB
-                          Buffers: shared hit=20
-                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..57.00 rows=3000 width=8) (actual time=0.004..0.142 rows=3000.00 loops=1)
+                          Buffers: shared hit=24
+                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..61.00 rows=3000 width=8) (actual time=0.005..0.158 rows=3000.00 loops=1)
                                 Filter: is_primary
                                 Rows Removed by Filter: 700
-                                Buffers: shared hit=20
+                                Buffers: shared hit=24
 Planning:
   Buffers: shared hit=193
-Planning Time: 0.336 ms
-Execution Time: 19.844 ms
+Planning Time: 0.342 ms
+Execution Time: 19.074 ms

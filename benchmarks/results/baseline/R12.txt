@@ -1,48 +1,48 @@
 === R12 run 1 ===
-GroupAggregate  (cost=5015.06..5031.76 rows=735 width=25) (actual time=21.139..23.237 rows=14.00 loops=1)
+GroupAggregate  (cost=5007.69..5024.37 rows=734 width=25) (actual time=20.336..22.397 rows=14.00 loops=1)
   Group Key: (date_trunc('month'::text, slot_start)), consult_type
-  Buffers: shared hit=2730
-  ->  Sort  (cost=5015.06..5016.94 rows=751 width=17) (actual time=20.796..21.726 rows=51501.00 loops=1)
+  Buffers: shared hit=2726
+  ->  Sort  (cost=5007.69..5009.57 rows=750 width=17) (actual time=20.032..20.936 rows=51501.00 loops=1)
         Sort Key: (date_trunc('month'::text, slot_start)), consult_type
         Sort Method: quicksort  Memory: 3474kB
-        Buffers: shared hit=2730
-        ->  Seq Scan on appointments  (cost=0.00..4979.19 rows=751 width=17) (actual time=8.627..17.937 rows=51501.00 loops=1)
+        Buffers: shared hit=2726
+        ->  Seq Scan on appointments  (cost=0.00..4971.88 rows=750 width=17) (actual time=8.486..17.454 rows=51501.00 loops=1)
               Filter: (EXTRACT(year FROM slot_start) = '2026'::numeric)
               Rows Removed by Filter: 98499
-              Buffers: shared hit=2724
+              Buffers: shared hit=2720
 Planning:
   Buffers: shared hit=129
-Planning Time: 0.195 ms
-Execution Time: 23.260 ms
+Planning Time: 0.201 ms
+Execution Time: 22.422 ms
 === R12 run 2 ===
-GroupAggregate  (cost=5015.06..5031.76 rows=735 width=25) (actual time=21.681..23.793 rows=14.00 loops=1)
+GroupAggregate  (cost=5007.69..5024.37 rows=734 width=25) (actual time=20.188..22.164 rows=14.00 loops=1)
   Group Key: (date_trunc('month'::text, slot_start)), consult_type
-  Buffers: shared hit=2730
-  ->  Sort  (cost=5015.06..5016.94 rows=751 width=17) (actual time=21.333..22.268 rows=51501.00 loops=1)
+  Buffers: shared hit=2726
+  ->  Sort  (cost=5007.69..5009.57 rows=750 width=17) (actual time=19.883..20.751 rows=51501.00 loops=1)
         Sort Key: (date_trunc('month'::text, slot_start)), consult_type
         Sort Method: quicksort  Memory: 3474kB
-        Buffers: shared hit=2730
-        ->  Seq Scan on appointments  (cost=0.00..4979.19 rows=751 width=17) (actual time=8.967..18.500 rows=51501.00 loops=1)
+        Buffers: shared hit=2726
+        ->  Seq Scan on appointments  (cost=0.00..4971.88 rows=750 width=17) (actual time=8.515..17.240 rows=51501.00 loops=1)
               Filter: (EXTRACT(year FROM slot_start) = '2026'::numeric)
               Rows Removed by Filter: 98499
-              Buffers: shared hit=2724
+              Buffers: shared hit=2720
 Planning:
   Buffers: shared hit=129
-Planning Time: 0.178 ms
-Execution Time: 23.815 ms
+Planning Time: 0.181 ms
+Execution Time: 22.187 ms
 === R12 run 3 ===
-GroupAggregate  (cost=5015.06..5031.76 rows=735 width=25) (actual time=21.075..23.168 rows=14.00 loops=1)
+GroupAggregate  (cost=5007.69..5024.37 rows=734 width=25) (actual time=19.758..21.747 rows=14.00 loops=1)
   Group Key: (date_trunc('month'::text, slot_start)), consult_type
-  Buffers: shared hit=2730
-  ->  Sort  (cost=5015.06..5016.94 rows=751 width=17) (actual time=20.743..21.672 rows=51501.00 loops=1)
+  Buffers: shared hit=2726
+  ->  Sort  (cost=5007.69..5009.57 rows=750 width=17) (actual time=19.452..20.319 rows=51501.00 loops=1)
         Sort Key: (date_trunc('month'::text, slot_start)), consult_type
         Sort Method: quicksort  Memory: 3474kB
-        Buffers: shared hit=2730
-        ->  Seq Scan on appointments  (cost=0.00..4979.19 rows=751 width=17) (actual time=8.707..17.887 rows=51501.00 loops=1)
+        Buffers: shared hit=2726
+        ->  Seq Scan on appointments  (cost=0.00..4971.88 rows=750 width=17) (actual time=8.364..16.920 rows=51501.00 loops=1)
               Filter: (EXTRACT(year FROM slot_start) = '2026'::numeric)
               Rows Removed by Filter: 98499
-              Buffers: shared hit=2724
+              Buffers: shared hit=2720
 Planning:
   Buffers: shared hit=129
-Planning Time: 0.169 ms
-Execution Time: 23.191 ms
+Planning Time: 0.202 ms
+Execution Time: 21.772 ms
