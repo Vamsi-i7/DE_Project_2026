@@ -1,0 +1,84 @@
+=== R16 run 1 ===
+Limit  (cost=423.98..424.03 rows=20 width=70) (actual time=1.303..1.305 rows=20.00 loops=1)
+  Buffers: shared hit=60
+  ->  Sort  (cost=423.98..427.73 rows=1500 width=70) (actual time=1.303..1.304 rows=20.00 loops=1)
+        Sort Key: (sum(a.fee)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=60
+        ->  HashAggregate  (cost=365.31..384.06 rows=1500 width=70) (actual time=1.124..1.208 rows=1129.00 loops=1)
+              Group Key: c.clinic_id
+              Batches: 1  Memory Usage: 689kB
+              Buffers: shared hit=57
+              ->  Hash Join  (cost=55.17..318.98 rows=6178 width=35) (actual time=0.148..0.708 rows=4948.00 loops=1)
+                    Hash Cond: (a.clinic_id = c.clinic_id)
+                    Buffers: shared hit=57
+                    ->  Index Only Scan using idx_appointments_paid_june on appointments a  (cost=0.42..247.98 rows=6178 width=9) (actual time=0.006..0.213 rows=6362.00 loops=1)
+                          Index Cond: ((slot_start >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=36
+                    ->  Hash  (cost=36.00..36.00 rows=1500 width=30) (actual time=0.139..0.139 rows=1500.00 loops=1)
+                          Buckets: 2048  Batches: 1  Memory Usage: 108kB
+                          Buffers: shared hit=21
+                          ->  Seq Scan on clinics c  (cost=0.00..36.00 rows=1500 width=30) (actual time=0.003..0.063 rows=1500.00 loops=1)
+                                Buffers: shared hit=21
+Planning:
+  Buffers: shared hit=522
+Planning Time: 0.769 ms
+Execution Time: 1.338 ms
+=== R16 run 2 ===
+Limit  (cost=423.98..424.03 rows=20 width=70) (actual time=1.279..1.281 rows=20.00 loops=1)
+  Buffers: shared hit=60
+  ->  Sort  (cost=423.98..427.73 rows=1500 width=70) (actual time=1.279..1.279 rows=20.00 loops=1)
+        Sort Key: (sum(a.fee)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=60
+        ->  HashAggregate  (cost=365.31..384.06 rows=1500 width=70) (actual time=1.099..1.183 rows=1129.00 loops=1)
+              Group Key: c.clinic_id
+              Batches: 1  Memory Usage: 689kB
+              Buffers: shared hit=57
+              ->  Hash Join  (cost=55.17..318.98 rows=6178 width=35) (actual time=0.140..0.698 rows=4948.00 loops=1)
+                    Hash Cond: (a.clinic_id = c.clinic_id)
+                    Buffers: shared hit=57
+                    ->  Index Only Scan using idx_appointments_paid_june on appointments a  (cost=0.42..247.98 rows=6178 width=9) (actual time=0.005..0.212 rows=6362.00 loops=1)
+                          Index Cond: ((slot_start >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=36
+                    ->  Hash  (cost=36.00..36.00 rows=1500 width=30) (actual time=0.131..0.131 rows=1500.00 loops=1)
+                          Buckets: 2048  Batches: 1  Memory Usage: 108kB
+                          Buffers: shared hit=21
+                          ->  Seq Scan on clinics c  (cost=0.00..36.00 rows=1500 width=30) (actual time=0.003..0.062 rows=1500.00 loops=1)
+                                Buffers: shared hit=21
+Planning:
+  Buffers: shared hit=522
+Planning Time: 0.725 ms
+Execution Time: 1.311 ms
+=== R16 run 3 ===
+Limit  (cost=423.98..424.03 rows=20 width=70) (actual time=1.277..1.279 rows=20.00 loops=1)
+  Buffers: shared hit=60
+  ->  Sort  (cost=423.98..427.73 rows=1500 width=70) (actual time=1.277..1.278 rows=20.00 loops=1)
+        Sort Key: (sum(a.fee)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=60
+        ->  HashAggregate  (cost=365.31..384.06 rows=1500 width=70) (actual time=1.099..1.182 rows=1129.00 loops=1)
+              Group Key: c.clinic_id
+              Batches: 1  Memory Usage: 689kB
+              Buffers: shared hit=57
+              ->  Hash Join  (cost=55.17..318.98 rows=6178 width=35) (actual time=0.138..0.688 rows=4948.00 loops=1)
+                    Hash Cond: (a.clinic_id = c.clinic_id)
+                    Buffers: shared hit=57
+                    ->  Index Only Scan using idx_appointments_paid_june on appointments a  (cost=0.42..247.98 rows=6178 width=9) (actual time=0.005..0.208 rows=6362.00 loops=1)
+                          Index Cond: ((slot_start >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=36
+                    ->  Hash  (cost=36.00..36.00 rows=1500 width=30) (actual time=0.129..0.130 rows=1500.00 loops=1)
+                          Buckets: 2048  Batches: 1  Memory Usage: 108kB
+                          Buffers: shared hit=21
+                          ->  Seq Scan on clinics c  (cost=0.00..36.00 rows=1500 width=30) (actual time=0.003..0.060 rows=1500.00 loops=1)
+                                Buffers: shared hit=21
+Planning:
+  Buffers: shared hit=522
+Planning Time: 0.711 ms
+Execution Time: 1.309 ms

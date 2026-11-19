@@ -1,0 +1,54 @@
+=== W02 run 1 ===
+Update on appointments  (cost=4.72..12.74 rows=0 width=0) (actual time=0.169..0.170 rows=0.00 loops=1)
+  Buffers: shared hit=75
+  InitPlan 1
+    ->  Limit  (cost=0.28..4.30 rows=1 width=12) (actual time=0.007..0.007 rows=1.00 loops=1)
+          Buffers: shared hit=3
+          ->  Index Scan using idx_appointments_booked_inclinic on appointments appointments_1  (cost=0.28..8.32 rows=2 width=12) (actual time=0.007..0.007 rows=1.00 loops=1)
+                Index Cond: ((slot_start >= '2026-07-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-02 00:00:00+05:30'::timestamp with time zone))
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Index Scan using idx_appointments_id_doctor on appointments  (cost=0.42..8.44 rows=1 width=46) (actual time=0.015..0.016 rows=1.00 loops=1)
+        Index Cond: (appointment_id = (InitPlan 1).col1)
+        Index Searches: 1
+        Buffers: shared hit=7
+Planning:
+  Buffers: shared hit=417
+Planning Time: 0.641 ms
+Execution Time: 0.219 ms
+=== W02 run 2 ===
+Update on appointments  (cost=4.72..12.74 rows=0 width=0) (actual time=0.184..0.184 rows=0.00 loops=1)
+  Buffers: shared hit=77
+  InitPlan 1
+    ->  Limit  (cost=0.28..4.30 rows=1 width=12) (actual time=0.011..0.011 rows=1.00 loops=1)
+          Buffers: shared hit=3
+          ->  Index Scan using idx_appointments_booked_inclinic on appointments appointments_1  (cost=0.28..8.32 rows=2 width=12) (actual time=0.010..0.010 rows=1.00 loops=1)
+                Index Cond: ((slot_start >= '2026-07-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-02 00:00:00+05:30'::timestamp with time zone))
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Index Scan using idx_appointments_id_doctor on appointments  (cost=0.42..8.44 rows=1 width=46) (actual time=0.020..0.022 rows=1.00 loops=1)
+        Index Cond: (appointment_id = (InitPlan 1).col1)
+        Index Searches: 1
+        Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=417
+Planning Time: 0.657 ms
+Execution Time: 0.228 ms
+=== W02 run 3 ===
+Update on appointments  (cost=4.72..12.74 rows=0 width=0) (actual time=0.170..0.171 rows=0.00 loops=1)
+  Buffers: shared hit=77
+  InitPlan 1
+    ->  Limit  (cost=0.28..4.30 rows=1 width=12) (actual time=0.010..0.010 rows=1.00 loops=1)
+          Buffers: shared hit=3
+          ->  Index Scan using idx_appointments_booked_inclinic on appointments appointments_1  (cost=0.28..8.32 rows=2 width=12) (actual time=0.010..0.010 rows=1.00 loops=1)
+                Index Cond: ((slot_start >= '2026-07-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-02 00:00:00+05:30'::timestamp with time zone))
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Index Scan using idx_appointments_id_doctor on appointments  (cost=0.42..8.44 rows=1 width=46) (actual time=0.019..0.021 rows=1.00 loops=1)
+        Index Cond: (appointment_id = (InitPlan 1).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=417
+Planning Time: 0.643 ms
+Execution Time: 0.213 ms

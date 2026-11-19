@@ -1,0 +1,36 @@
+=== W05 run 1 ===
+Update on appointments  (cost=0.28..8.30 rows=0 width=0) (actual time=0.177..0.177 rows=0.00 loops=1)
+  Buffers: shared hit=104
+  ->  Index Scan using idx_appointments_doctor_booked on appointments  (cost=0.28..8.30 rows=1 width=70) (actual time=0.009..0.013 rows=3.00 loops=1)
+        Index Cond: ((doctor_id = 504) AND (slot_start >= '2026-07-03 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-04 00:00:00+05:30'::timestamp with time zone))
+        Filter: (status = 'BOOKED'::text)
+        Index Searches: 1
+        Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=407
+Planning Time: 0.580 ms
+Execution Time: 0.212 ms
+=== W05 run 2 ===
+Update on appointments  (cost=0.28..8.30 rows=0 width=0) (actual time=0.178..0.178 rows=0.00 loops=1)
+  Buffers: shared hit=107
+  ->  Index Scan using idx_appointments_doctor_booked on appointments  (cost=0.28..8.30 rows=1 width=70) (actual time=0.010..0.014 rows=3.00 loops=1)
+        Index Cond: ((doctor_id = 504) AND (slot_start >= '2026-07-03 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-04 00:00:00+05:30'::timestamp with time zone))
+        Filter: (status = 'BOOKED'::text)
+        Index Searches: 1
+        Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=407
+Planning Time: 0.568 ms
+Execution Time: 0.214 ms
+=== W05 run 3 ===
+Update on appointments  (cost=0.28..8.30 rows=0 width=0) (actual time=0.180..0.181 rows=0.00 loops=1)
+  Buffers: shared hit=107
+  ->  Index Scan using idx_appointments_doctor_booked on appointments  (cost=0.28..8.30 rows=1 width=70) (actual time=0.010..0.014 rows=3.00 loops=1)
+        Index Cond: ((doctor_id = 504) AND (slot_start >= '2026-07-03 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-04 00:00:00+05:30'::timestamp with time zone))
+        Filter: (status = 'BOOKED'::text)
+        Index Searches: 1
+        Buffers: shared hit=5
+Planning:
+  Buffers: shared hit=407
+Planning Time: 0.562 ms
+Execution Time: 0.215 ms

@@ -1,0 +1,66 @@
+=== R09 run 1 ===
+Limit  (cost=327.51..327.56 rows=20 width=44) (actual time=1.173..1.174 rows=20.00 loops=1)
+  Buffers: shared hit=34
+  ->  Sort  (cost=327.51..328.50 rows=398 width=44) (actual time=1.173..1.173 rows=20.00 loops=1)
+        Sort Key: (round(avg((EXTRACT(epoch FROM (consult_started_at - slot_start)) / '60'::numeric)), 1)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=34
+        ->  HashAggregate  (cost=298.01..316.92 rows=398 width=44) (actual time=0.988..1.129 rows=509.00 loops=1)
+              Group Key: clinic_id
+              Filter: (count(*) >= 5)
+              Batches: 1  Memory Usage: 625kB
+              Rows Removed by Filter: 634
+              Buffers: shared hit=31
+              ->  Index Only Scan using idx_appointments_clinic_wait on appointments a  (cost=0.42..216.76 rows=5417 width=20) (actual time=0.007..0.196 rows=5622.00 loops=1)
+                    Index Cond: ((slot_start >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=31
+Planning:
+  Buffers: shared hit=483
+Planning Time: 0.657 ms
+Execution Time: 1.202 ms
+=== R09 run 2 ===
+Limit  (cost=327.51..327.56 rows=20 width=44) (actual time=1.205..1.207 rows=20.00 loops=1)
+  Buffers: shared hit=34
+  ->  Sort  (cost=327.51..328.50 rows=398 width=44) (actual time=1.205..1.205 rows=20.00 loops=1)
+        Sort Key: (round(avg((EXTRACT(epoch FROM (consult_started_at - slot_start)) / '60'::numeric)), 1)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=34
+        ->  HashAggregate  (cost=298.01..316.92 rows=398 width=44) (actual time=1.011..1.158 rows=509.00 loops=1)
+              Group Key: clinic_id
+              Filter: (count(*) >= 5)
+              Batches: 1  Memory Usage: 625kB
+              Rows Removed by Filter: 634
+              Buffers: shared hit=31
+              ->  Index Only Scan using idx_appointments_clinic_wait on appointments a  (cost=0.42..216.76 rows=5417 width=20) (actual time=0.008..0.208 rows=5622.00 loops=1)
+                    Index Cond: ((slot_start >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=31
+Planning:
+  Buffers: shared hit=483
+Planning Time: 0.647 ms
+Execution Time: 1.234 ms
+=== R09 run 3 ===
+Limit  (cost=327.51..327.56 rows=20 width=44) (actual time=1.156..1.157 rows=20.00 loops=1)
+  Buffers: shared hit=34
+  ->  Sort  (cost=327.51..328.50 rows=398 width=44) (actual time=1.156..1.156 rows=20.00 loops=1)
+        Sort Key: (round(avg((EXTRACT(epoch FROM (consult_started_at - slot_start)) / '60'::numeric)), 1)) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=34
+        ->  HashAggregate  (cost=298.01..316.92 rows=398 width=44) (actual time=0.975..1.113 rows=509.00 loops=1)
+              Group Key: clinic_id
+              Filter: (count(*) >= 5)
+              Batches: 1  Memory Usage: 625kB
+              Rows Removed by Filter: 634
+              Buffers: shared hit=31
+              ->  Index Only Scan using idx_appointments_clinic_wait on appointments a  (cost=0.42..216.76 rows=5417 width=20) (actual time=0.008..0.195 rows=5622.00 loops=1)
+                    Index Cond: ((slot_start >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=31
+Planning:
+  Buffers: shared hit=483
+Planning Time: 0.618 ms
+Execution Time: 1.185 ms

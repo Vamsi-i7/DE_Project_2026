@@ -1,0 +1,33 @@
+=== R21 run 1 ===
+Limit  (cost=0.29..4.27 rows=100 width=25) (actual time=0.026..0.033 rows=100.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Only Scan using idx_appointments_completed_pending on appointments  (cost=0.29..918.19 rows=23060 width=25) (actual time=0.026..0.029 rows=100.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=409
+Planning Time: 0.584 ms
+Execution Time: 0.044 ms
+=== R21 run 2 ===
+Limit  (cost=0.29..4.27 rows=100 width=25) (actual time=0.026..0.032 rows=100.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Only Scan using idx_appointments_completed_pending on appointments  (cost=0.29..918.19 rows=23060 width=25) (actual time=0.025..0.028 rows=100.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=409
+Planning Time: 0.584 ms
+Execution Time: 0.043 ms
+=== R21 run 3 ===
+Limit  (cost=0.29..4.27 rows=100 width=25) (actual time=0.029..0.034 rows=100.00 loops=1)
+  Buffers: shared hit=3
+  ->  Index Only Scan using idx_appointments_completed_pending on appointments  (cost=0.29..918.19 rows=23060 width=25) (actual time=0.028..0.031 rows=100.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=409
+Planning Time: 0.573 ms
+Execution Time: 0.045 ms

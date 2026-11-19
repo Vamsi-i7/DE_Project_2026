@@ -1,0 +1,114 @@
+=== R08 run 1 ===
+Sort  (cost=3721.11..3721.15 rows=15 width=53) (actual time=10.227..10.228 rows=15.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE (a.status = 'NO_SHOW'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=400
+  ->  HashAggregate  (cost=3720.48..3720.82 rows=15 width=53) (actual time=10.216..10.219 rows=15.00 loops=1)
+        Group Key: s.spec_name
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=397
+        ->  Hash Join  (cost=106.36..3345.84 rows=37464 width=22) (actual time=0.607..7.051 rows=44666.00 loops=1)
+              Hash Cond: (a.doctor_id = ds.doctor_id)
+              Buffers: shared hit=397
+              ->  Index Only Scan using idx_appointments_slot_start_desc on appointments a  (cost=0.42..2637.14 rows=45624 width=13) (actual time=0.123..3.145 rows=44666.00 loops=1)
+                    Index Cond: ((slot_start >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status = ANY ('{COMPLETED,NO_SHOW}'::text[]))
+                    Rows Removed by Filter: 6835
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=376
+              ->  Hash  (cost=68.44..68.44 rows=3000 width=17) (actual time=0.479..0.479 rows=3000.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 179kB
+                    Buffers: shared hit=21
+                    ->  Hash Join  (cost=1.34..68.44 rows=3000 width=17) (actual time=0.029..0.322 rows=3000.00 loops=1)
+                          Hash Cond: (ds.spec_id = s.spec_id)
+                          Buffers: shared hit=21
+                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..57.00 rows=3000 width=8) (actual time=0.004..0.122 rows=3000.00 loops=1)
+                                Filter: is_primary
+                                Rows Removed by Filter: 700
+                                Buffers: shared hit=20
+                          ->  Hash  (cost=1.15..1.15 rows=15 width=17) (actual time=0.005..0.005 rows=15.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on specializations s  (cost=0.00..1.15 rows=15 width=17) (actual time=0.001..0.002 rows=15.00 loops=1)
+                                      Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=653
+Planning Time: 1.020 ms
+Execution Time: 10.258 ms
+=== R08 run 2 ===
+Sort  (cost=3721.11..3721.15 rows=15 width=53) (actual time=9.433..9.434 rows=15.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE (a.status = 'NO_SHOW'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=400
+  ->  HashAggregate  (cost=3720.48..3720.82 rows=15 width=53) (actual time=9.423..9.426 rows=15.00 loops=1)
+        Group Key: s.spec_name
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=397
+        ->  Hash Join  (cost=106.36..3345.84 rows=37464 width=22) (actual time=0.518..6.485 rows=44666.00 loops=1)
+              Hash Cond: (a.doctor_id = ds.doctor_id)
+              Buffers: shared hit=397
+              ->  Index Only Scan using idx_appointments_slot_start_desc on appointments a  (cost=0.42..2637.14 rows=45624 width=13) (actual time=0.110..2.935 rows=44666.00 loops=1)
+                    Index Cond: ((slot_start >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status = ANY ('{COMPLETED,NO_SHOW}'::text[]))
+                    Rows Removed by Filter: 6835
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=376
+              ->  Hash  (cost=68.44..68.44 rows=3000 width=17) (actual time=0.403..0.404 rows=3000.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 179kB
+                    Buffers: shared hit=21
+                    ->  Hash Join  (cost=1.34..68.44 rows=3000 width=17) (actual time=0.010..0.269 rows=3000.00 loops=1)
+                          Hash Cond: (ds.spec_id = s.spec_id)
+                          Buffers: shared hit=21
+                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..57.00 rows=3000 width=8) (actual time=0.003..0.109 rows=3000.00 loops=1)
+                                Filter: is_primary
+                                Rows Removed by Filter: 700
+                                Buffers: shared hit=20
+                          ->  Hash  (cost=1.15..1.15 rows=15 width=17) (actual time=0.004..0.004 rows=15.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on specializations s  (cost=0.00..1.15 rows=15 width=17) (actual time=0.001..0.002 rows=15.00 loops=1)
+                                      Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=653
+Planning Time: 0.930 ms
+Execution Time: 9.461 ms
+=== R08 run 3 ===
+Sort  (cost=3721.11..3721.15 rows=15 width=53) (actual time=9.563..9.564 rows=15.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE (a.status = 'NO_SHOW'::text)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=400
+  ->  HashAggregate  (cost=3720.48..3720.82 rows=15 width=53) (actual time=9.551..9.554 rows=15.00 loops=1)
+        Group Key: s.spec_name
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=397
+        ->  Hash Join  (cost=106.36..3345.84 rows=37464 width=22) (actual time=0.523..6.608 rows=44666.00 loops=1)
+              Hash Cond: (a.doctor_id = ds.doctor_id)
+              Buffers: shared hit=397
+              ->  Index Only Scan using idx_appointments_slot_start_desc on appointments a  (cost=0.42..2637.14 rows=45624 width=13) (actual time=0.114..3.011 rows=44666.00 loops=1)
+                    Index Cond: ((slot_start >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (slot_start < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status = ANY ('{COMPLETED,NO_SHOW}'::text[]))
+                    Rows Removed by Filter: 6835
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=376
+              ->  Hash  (cost=68.44..68.44 rows=3000 width=17) (actual time=0.405..0.405 rows=3000.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 179kB
+                    Buffers: shared hit=21
+                    ->  Hash Join  (cost=1.34..68.44 rows=3000 width=17) (actual time=0.010..0.268 rows=3000.00 loops=1)
+                          Hash Cond: (ds.spec_id = s.spec_id)
+                          Buffers: shared hit=21
+                          ->  Seq Scan on doctor_specializations ds  (cost=0.00..57.00 rows=3000 width=8) (actual time=0.003..0.108 rows=3000.00 loops=1)
+                                Filter: is_primary
+                                Rows Removed by Filter: 700
+                                Buffers: shared hit=20
+                          ->  Hash  (cost=1.15..1.15 rows=15 width=17) (actual time=0.004..0.004 rows=15.00 loops=1)
+                                Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                Buffers: shared hit=1
+                                ->  Seq Scan on specializations s  (cost=0.00..1.15 rows=15 width=17) (actual time=0.001..0.002 rows=15.00 loops=1)
+                                      Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=653
+Planning Time: 0.910 ms
+Execution Time: 9.592 ms

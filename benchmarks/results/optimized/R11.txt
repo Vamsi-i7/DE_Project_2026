@@ -1,0 +1,69 @@
+=== R11 run 1 ===
+Nested Loop Anti Join  (cost=1.13..2773.51 rows=248 width=16) (actual time=0.018..0.936 rows=430.00 loops=1)
+  Buffers: shared hit=3015
+  ->  Nested Loop  (cost=0.71..2602.48 rows=372 width=24) (actual time=0.012..0.414 rows=430.00 loops=1)
+        Buffers: shared hit=1725
+        ->  Index Only Scan using idx_prescriptions_followup on prescriptions p  (cost=0.29..19.73 rows=372 width=12) (actual time=0.005..0.020 rows=430.00 loops=1)
+              Index Cond: ((follow_up_date >= '2026-07-01'::date) AND (follow_up_date <= '2026-07-07'::date))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=5
+        ->  Index Scan using appointments_pkey on appointments a  (cost=0.42..6.94 rows=1 width=20) (actual time=0.001..0.001 rows=1.00 loops=430)
+              Index Cond: (appointment_id = p.appointment_id)
+              Index Searches: 430
+              Buffers: shared hit=1720
+  ->  Index Only Scan using idx_appointments_patient_doctor_slot on appointments f  (cost=0.42..0.46 rows=1 width=16) (actual time=0.001..0.001 rows=0.00 loops=430)
+        Index Cond: ((patient_id = a.patient_id) AND (doctor_id = a.doctor_id) AND (slot_start > a.slot_start))
+        Heap Fetches: 0
+        Index Searches: 430
+        Buffers: shared hit=1290
+Planning:
+  Buffers: shared hit=739
+Planning Time: 0.990 ms
+Execution Time: 0.961 ms
+=== R11 run 2 ===
+Nested Loop Anti Join  (cost=1.13..2773.51 rows=248 width=16) (actual time=0.018..0.905 rows=430.00 loops=1)
+  Buffers: shared hit=3015
+  ->  Nested Loop  (cost=0.71..2602.48 rows=372 width=24) (actual time=0.012..0.400 rows=430.00 loops=1)
+        Buffers: shared hit=1725
+        ->  Index Only Scan using idx_prescriptions_followup on prescriptions p  (cost=0.29..19.73 rows=372 width=12) (actual time=0.004..0.019 rows=430.00 loops=1)
+              Index Cond: ((follow_up_date >= '2026-07-01'::date) AND (follow_up_date <= '2026-07-07'::date))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=5
+        ->  Index Scan using appointments_pkey on appointments a  (cost=0.42..6.94 rows=1 width=20) (actual time=0.001..0.001 rows=1.00 loops=430)
+              Index Cond: (appointment_id = p.appointment_id)
+              Index Searches: 430
+              Buffers: shared hit=1720
+  ->  Index Only Scan using idx_appointments_patient_doctor_slot on appointments f  (cost=0.42..0.46 rows=1 width=16) (actual time=0.001..0.001 rows=0.00 loops=430)
+        Index Cond: ((patient_id = a.patient_id) AND (doctor_id = a.doctor_id) AND (slot_start > a.slot_start))
+        Heap Fetches: 0
+        Index Searches: 430
+        Buffers: shared hit=1290
+Planning:
+  Buffers: shared hit=739
+Planning Time: 0.898 ms
+Execution Time: 0.928 ms
+=== R11 run 3 ===
+Nested Loop Anti Join  (cost=1.13..2773.51 rows=248 width=16) (actual time=0.018..0.893 rows=430.00 loops=1)
+  Buffers: shared hit=3015
+  ->  Nested Loop  (cost=0.71..2602.48 rows=372 width=24) (actual time=0.012..0.391 rows=430.00 loops=1)
+        Buffers: shared hit=1725
+        ->  Index Only Scan using idx_prescriptions_followup on prescriptions p  (cost=0.29..19.73 rows=372 width=12) (actual time=0.005..0.019 rows=430.00 loops=1)
+              Index Cond: ((follow_up_date >= '2026-07-01'::date) AND (follow_up_date <= '2026-07-07'::date))
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=5
+        ->  Index Scan using appointments_pkey on appointments a  (cost=0.42..6.94 rows=1 width=20) (actual time=0.001..0.001 rows=1.00 loops=430)
+              Index Cond: (appointment_id = p.appointment_id)
+              Index Searches: 430
+              Buffers: shared hit=1720
+  ->  Index Only Scan using idx_appointments_patient_doctor_slot on appointments f  (cost=0.42..0.46 rows=1 width=16) (actual time=0.001..0.001 rows=0.00 loops=430)
+        Index Cond: ((patient_id = a.patient_id) AND (doctor_id = a.doctor_id) AND (slot_start > a.slot_start))
+        Heap Fetches: 0
+        Index Searches: 430
+        Buffers: shared hit=1290
+Planning:
+  Buffers: shared hit=739
+Planning Time: 0.895 ms
+Execution Time: 0.915 ms

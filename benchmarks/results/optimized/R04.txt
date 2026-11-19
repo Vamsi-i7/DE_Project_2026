@@ -1,0 +1,66 @@
+=== R04 run 1 ===
+Nested Loop Left Join  (cost=0.84..20.90 rows=1 width=63) (actual time=0.014..0.020 rows=2.00 loops=1)
+  Buffers: shared hit=15
+  ->  Nested Loop  (cost=0.56..12.60 rows=1 width=41) (actual time=0.009..0.013 rows=2.00 loops=1)
+        Buffers: shared hit=9
+        ->  Index Only Scan using idx_appointments_patient_booked on appointments a  (cost=0.28..4.29 rows=1 width=29) (actual time=0.005..0.005 rows=2.00 loops=1)
+              Index Cond: (patient_id = 90)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using doctors_pkey on doctors d  (cost=0.28..8.30 rows=1 width=20) (actual time=0.003..0.003 rows=1.00 loops=2)
+              Index Cond: (doctor_id = a.doctor_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+  ->  Index Scan using clinics_pkey on clinics c  (cost=0.28..8.29 rows=1 width=30) (actual time=0.003..0.003 rows=1.00 loops=2)
+        Index Cond: (clinic_id = a.clinic_id)
+        Index Searches: 2
+        Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=666
+Planning Time: 1.128 ms
+Execution Time: 0.043 ms
+=== R04 run 2 ===
+Nested Loop Left Join  (cost=0.84..20.90 rows=1 width=63) (actual time=0.013..0.019 rows=2.00 loops=1)
+  Buffers: shared hit=15
+  ->  Nested Loop  (cost=0.56..12.60 rows=1 width=41) (actual time=0.008..0.011 rows=2.00 loops=1)
+        Buffers: shared hit=9
+        ->  Index Only Scan using idx_appointments_patient_booked on appointments a  (cost=0.28..4.29 rows=1 width=29) (actual time=0.004..0.004 rows=2.00 loops=1)
+              Index Cond: (patient_id = 90)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using doctors_pkey on doctors d  (cost=0.28..8.30 rows=1 width=20) (actual time=0.003..0.003 rows=1.00 loops=2)
+              Index Cond: (doctor_id = a.doctor_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+  ->  Index Scan using clinics_pkey on clinics c  (cost=0.28..8.29 rows=1 width=30) (actual time=0.003..0.003 rows=1.00 loops=2)
+        Index Cond: (clinic_id = a.clinic_id)
+        Index Searches: 2
+        Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=666
+Planning Time: 1.137 ms
+Execution Time: 0.061 ms
+=== R04 run 3 ===
+Nested Loop Left Join  (cost=0.84..20.90 rows=1 width=63) (actual time=0.012..0.017 rows=2.00 loops=1)
+  Buffers: shared hit=15
+  ->  Nested Loop  (cost=0.56..12.60 rows=1 width=41) (actual time=0.007..0.010 rows=2.00 loops=1)
+        Buffers: shared hit=9
+        ->  Index Only Scan using idx_appointments_patient_booked on appointments a  (cost=0.28..4.29 rows=1 width=29) (actual time=0.004..0.004 rows=2.00 loops=1)
+              Index Cond: (patient_id = 90)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using doctors_pkey on doctors d  (cost=0.28..8.30 rows=1 width=20) (actual time=0.002..0.002 rows=1.00 loops=2)
+              Index Cond: (doctor_id = a.doctor_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+  ->  Index Scan using clinics_pkey on clinics c  (cost=0.28..8.29 rows=1 width=30) (actual time=0.003..0.003 rows=1.00 loops=2)
+        Index Cond: (clinic_id = a.clinic_id)
+        Index Searches: 2
+        Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=666
+Planning Time: 1.050 ms
+Execution Time: 0.037 ms
